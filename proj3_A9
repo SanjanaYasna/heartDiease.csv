@@ -1,0 +1,60 @@
+import java.util.Arrays;
+/**
+ * Class to implement tree conversions
+ *
+ * @author Sanjana Teetly Yasna III
+ * @version Fall 2023
+ */
+public class Conversion<T>{
+  /** Converts a sorted array to a balanced binary tree */
+  /*intancce variable tree needed in order to implement arrayToBInaryTree method */
+  public BinaryTree<T> tree;
+  public BinaryTree<T> arrayToBinaryTree(T[] arr) {
+    int lo = 0;
+    int hi = arr.length -1;
+    int mid =(lo + hi) /2;
+    /*if (hi == 1){
+      BinaryTree<T> tree = new BinaryTree<T>(arr[lo]);
+      return tree;
+    }*/
+    this.tree = new BinaryTree<T>(arr[mid]);
+    this.tree.setLeft(new BinaryTree<T>(arr[ helper(arr, lo, mid -1) ]));
+    //this.tree.setRight(new BinaryTree<T>(helper(arr, mid + 1, hi)));
+    //helper(arr, lo, hi);
+    //tree.left is helper from lo to mid, claled recursively. so helper should return T itself, not a bianry tree, and do so constantly 
+    return tree; // replace this with your implementation
+  }
+
+  public int helper(T[] arr, int lo, int hi){
+    if (hi <= lo) return lo;
+    int mid = (hi + lo)/2;
+    System.out.println(mid);
+    helper(arr, lo, mid -1);
+    helper(arr, mid + 1, hi);
+    return mid;
+    //this.tree.setData(arr[mid]);
+    /*if (hi == lo) return tree;
+    this.tree.setLeft(new BinaryTree<T>(helper(arr, lo, mid)));
+    this.tree.setRight(new BinaryTree<T>(helper(arr, mid, hi)));  */
+  }
+
+  /** Converts a sorted array to a balanced BST, for kudos 
+  public static <T extends Comparable<T>> BST<T> arrayToBST(T[] arr) {
+    return null; // replace this with your implementation
+  }
+*/
+  /** Convert BinaryTree to DLL 
+  public static <S> DLL<S> binaryTreeToDLL(BinaryTree<S> t) {
+    return null; // replace this with your implementation
+  }
+*/
+  public static void main(String[] args){
+    Integer[] arr = {1, 2, 3};
+    Conversion<Integer> test = new Conversion<Integer>();
+   //test.arrayToBinaryTree(arr);
+   // System.out.println(test.tree);
+   System.out.println(test.helper(arr, 0, 2));
+  }
+
+  
+}
